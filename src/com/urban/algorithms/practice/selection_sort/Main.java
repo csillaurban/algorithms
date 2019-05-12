@@ -9,7 +9,7 @@ public class Main {
         int [] intArray = new int[] {5, 3, 6, 2, 15, 12, 7};
 
         selectionSort.sort(intArray);
-        System.out.println("Original array: " + Arrays.toString(intArray));
+        System.out.println("Sorted array: " + Arrays.toString(intArray));
 
     }
 }
