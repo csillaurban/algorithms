@@ -1,4 +1,4 @@
-package com.urban.algorithms.practice.bubble_sort;
+package com.urban.algorithms.practice.sorting.bubble_sort;
 
 import java.util.Arrays;
 

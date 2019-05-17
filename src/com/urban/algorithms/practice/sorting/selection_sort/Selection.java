@@ -1,4 +1,4 @@
-package com.urban.algorithms.practice.selection_sort;
+package com.urban.algorithms.practice.sorting.selection_sort;
 
 
 public class Selection {

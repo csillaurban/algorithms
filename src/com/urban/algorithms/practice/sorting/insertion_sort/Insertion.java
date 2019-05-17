@@ -1,4 +1,4 @@
-package com.urban.algorithms.practice.insertion_sort;
+package com.urban.algorithms.practice.sorting.insertion_sort;
 
 public class Insertion {
 
