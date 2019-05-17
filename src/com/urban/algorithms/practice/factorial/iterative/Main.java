@@ -1,4 +1,4 @@
-package com.urban.algorithms.practice.factorial.recursive;
+package com.urban.algorithms.practice.factorial.iterative;
 
 public class Main {
     public static void main(String[] args) {
