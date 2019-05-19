@@ -2,7 +2,7 @@ package com.urban.algorithms.practice.BST;
 
 public class Node {
 
-    private int value;
+    protected int value;
     protected Node leftNode;
     protected Node rightNode;
 
