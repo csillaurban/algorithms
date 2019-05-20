@@ -18,10 +18,12 @@ public class Main {
         numbers.add(282);
 
         tree.root = tree.buildBST(numbers, 0, numbers.size() - 1);
-        tree.find(92);
         tree.addNewNode(tree.root, 92);
-        tree.find(92);
         tree.printNodes(tree.root);
-
+        tree.removeNode(100);
+        System.out.println("Nodes after removing");
+        tree.printNodes(tree.root);
+        int height = tree.calculateHeight(tree.root);
+        System.out.println("Height of the tree: " + height);
     }
 }

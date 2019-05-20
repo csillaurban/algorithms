@@ -2,6 +2,9 @@ package com.urban.algorithms.practice.BST;
 
 import java.util.List;
 
+import static sun.swing.MenuItemLayoutHelper.max;
+
+
 public class BST {
 
     protected Node root;
@@ -25,21 +28,19 @@ public class BST {
         return rootNode;
     }
 
-    public boolean find(int valueToFind) {
+    public Node find(int valueToFind) {
         Node currentNode = root;
 
         while(currentNode != null) {
             if(currentNode.value == valueToFind) {
-                System.out.println("Value is found: " + valueToFind);
-                return true;
+                return currentNode;
             } else if(currentNode.value > valueToFind) {
                 currentNode = currentNode.leftNode;
             } else if(currentNode.value < valueToFind){
                 currentNode = currentNode.rightNode;
             }
         }
-        System.out.println("There is no value like this: " + valueToFind);
-        return false;
+        return null;
     }
 
     public Node addNewNode(Node root, int valueToAdd) {
@@ -58,7 +59,7 @@ public class BST {
     }
 
     public Node findMinValue(Node root) {
-        if(root == null) {
+        /*if(root == null) {
             System.out.println("error");
             return null;
         }
@@ -68,34 +69,87 @@ public class BST {
         while(currentNode.leftNode != null) {
             currentNode = currentNode.leftNode;
         }
+        System.out.println("min value is: " + currentNode.value);
+        return currentNode;*/
 
-        return currentNode;
+        Node currentNode = root;
+        if(currentNode.leftNode == null) {
+            return currentNode;
+        } else {
+            return findMinValue(currentNode.leftNode);
+        }
     }
 
     public Node findMaxValue(Node root) {
-        if(root == null) {
-            System.out.println("error");
-            return null;
-        }
 
         Node currentNode = root;
 
-        while(currentNode.rightNode != null) {
-            currentNode = currentNode.rightNode;
+        if(currentNode.rightNode == null) {
+            return currentNode;
+        } else {
+            return findMaxValue(currentNode.rightNode);
         }
-
-        return currentNode;
     }
 
-    public Node removeNode(Node root, int valueToRemove) {
+    public void removeNode(int valueToRemove) {
+        Node nodeToDelete = find(valueToRemove);
+
+        if(nodeToDelete.leftNode == null && nodeToDelete.rightNode == null) {
+            Node parent = getParentOfMin(root, nodeToDelete.value);
+            parent.leftNode = null;
+        } else if(nodeToDelete.leftNode == null) {
+            nodeToDelete.value = nodeToDelete.rightNode.value;
+            if(nodeToDelete.rightNode.leftNode != null) {
+                nodeToDelete.leftNode = nodeToDelete.rightNode.leftNode;
+            }
+            if(nodeToDelete.rightNode.rightNode != null) {
+                nodeToDelete.rightNode = nodeToDelete.rightNode.rightNode;
+            }
+            nodeToDelete.rightNode = null;
+        }else if(nodeToDelete.rightNode == null) {
+            nodeToDelete.value = nodeToDelete.leftNode.value;
+            if(nodeToDelete.leftNode.leftNode != null) {
+                nodeToDelete.leftNode = nodeToDelete.leftNode.leftNode;
+            }
+            if(nodeToDelete.leftNode.rightNode != null) {
+                nodeToDelete.rightNode = nodeToDelete.leftNode.rightNode;
+            }
+            nodeToDelete.leftNode = null;
+        } else {
+            Node minNodeInRight = findMinValue(nodeToDelete.rightNode);
+            int temp = minNodeInRight.value;
+            removeNode(temp);
+            nodeToDelete.value = temp;
+        }
+
+    }
+
+    public Node getParentOfMin(Node root, int value) {
+        Node currentNode = root.rightNode;
+        while(currentNode.leftNode != null) {
+            if(currentNode.leftNode.value == value) {
+                return currentNode;
+            }
+            currentNode = currentNode.leftNode;
+        }
         return null;
+    }
+
+    public int calculateHeight(Node root) {
+        if(root == null) {
+            return -1;
+        } else {
+            int leftHeight = calculateHeight(root.leftNode);
+            int rightHeight = calculateHeight(root.rightNode);
+            return max(leftHeight, rightHeight)+1;
+        }
+
     }
 
     public void printNodes(Node root) {
         if(root == null) {
             return;
         }
-
         printNodes(root.leftNode);
         System.out.println("Node value: " + root.value);
         printNodes(root.rightNode);
