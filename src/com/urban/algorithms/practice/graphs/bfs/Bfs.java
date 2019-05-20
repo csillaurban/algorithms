@@ -1,8 +1,6 @@
 package com.urban.algorithms.practice.graphs.bfs;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class Bfs {
 
@@ -67,11 +65,39 @@ public class Bfs {
         return null;
     }
 
-    public List selectVerticesOfVerticesInADistance() {
-        return null;
+    public Set<Vertex> selectVerticesOfVerticesInADistance(Vertex start, int distance) {
+        Set<Vertex> verticesInADistance = new HashSet<>();
+        HashMap<Integer, Integer> visited = new HashMap<>();
+        LinkedList<Vertex> queue = new LinkedList<>();
+
+        for (Vertex vertex: vertices
+             ) {
+            visited.put(vertex.value, -1);
+        }
+
+        visited.put(start.value, 0);
+        queue.add(start);
+
+        while(!queue.isEmpty()){
+            Vertex current = queue.poll();
+            List<Vertex> adj = current.adjacency;
+            for (Vertex vertex: adj
+                 ) {
+                if(visited.get(vertex.value) == -1) {
+                    visited.put(vertex.value, visited.get(current.value) + 1);
+                    if(visited.get(vertex.value) <= distance) {
+                        queue.add(vertex);
+                        verticesInADistance.add(vertex);
+                    } else {
+                        break;
+                    }
+                }
+            }
+        }
+        return verticesInADistance;
     }
 
-    public List showShortestPathBetweenTwoVertices() {
+    public List showShortestPathBetweenTwoVertices(Vertex start, Vertex destination) {
         return null;
     }
 
