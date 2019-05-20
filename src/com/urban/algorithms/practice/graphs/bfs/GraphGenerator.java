@@ -18,15 +18,15 @@ public class GraphGenerator {
         Vertex v7 = new Vertex(7);
         Vertex v8 = new Vertex(8);
         Vertex v9 = new Vertex(9);
-        v1.adjacencies.addAll(Arrays.asList(2, 3, 7));
-        v2.adjacencies.addAll(Arrays.asList(1, 4));
-        v3.adjacencies.addAll(Arrays.asList(1, 7, 8));
-        v4.adjacencies.addAll(Arrays.asList(2, 9));
-        v5.adjacencies.add(4);
-        v6.adjacencies.add(4);
-        v7.adjacencies.addAll(Arrays.asList(1, 3, 8));
-        v8.adjacencies.addAll(Arrays.asList(7, 3, 9));
-        v9.adjacencies.addAll(Arrays.asList(8, 4));
+        v1.adjacency.addAll(Arrays.asList(v2, v3, v7));
+        v2.adjacency.addAll(Arrays.asList(v1, v4));
+        v3.adjacency.addAll(Arrays.asList(v1, v7, v8));
+        v4.adjacency.addAll(Arrays.asList(v2, v9, v5, v6));
+        v5.adjacency.add(v4);
+        v6.adjacency.add(v4);
+        v7.adjacency.addAll(Arrays.asList(v1, v3, v8));
+        v8.adjacency.addAll(Arrays.asList(v7, v3, v9));
+        v9.adjacency.addAll(Arrays.asList(v8, v4));
         vertices.addAll(Arrays.asList(v1, v2, v3, v4, v5, v6, v7, v8, v9));
         return vertices;
     }
