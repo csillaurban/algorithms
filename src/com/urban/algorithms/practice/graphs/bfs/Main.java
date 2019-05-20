@@ -8,5 +8,9 @@ public class Main {
         bfs.generateGraph();
         List<Vertex> vertices = bfs.getVertices();
         bfs.bfs(vertices.get(0));
+        Vertex start = vertices.get(0);
+        Vertex end = vertices.get(8);
+        System.out.println("Start: " + start.value + " - end: " + end.value);
+        bfs.calculateDistanceBetweenTwoVertices(start, end);
     }
 }

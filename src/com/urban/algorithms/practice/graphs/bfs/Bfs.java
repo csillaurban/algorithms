@@ -36,8 +36,35 @@ public class Bfs {
         }
     }
 
-    public int calculateDistanceBetweenTwoVertices() {
-        return 0;
+    public Integer calculateDistanceBetweenTwoVertices(Vertex start, Vertex destination) {
+        HashMap<Integer, Integer> visited = new HashMap<>();
+        LinkedList<Vertex> queue = new LinkedList<>();
+
+        for (Vertex vertex: vertices
+             ) {
+            visited.put(vertex.value, -1);
+        }
+
+        visited.put(start.value, 0);
+        queue.add(start);
+
+        while(!visited.isEmpty()) {
+            Vertex current = queue.poll();
+            List<Vertex> adj = current.adjacency;
+            for (Vertex vertex: adj
+                 ) {
+                if(visited.get(vertex.value) == -1) {
+                    visited.put(vertex.value, visited.get(current.value) + 1);
+                    if(vertex.value == destination.value) {
+                        System.out.println("The distance between the two values: " + visited.get(vertex.value));
+                        return visited.get(vertex.value);
+                    } else {
+                        queue.add(vertex);
+                    }
+                }
+            }
+        }
+        return null;
     }
 
     public List selectVerticesOfVerticesInADistance() {
