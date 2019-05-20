@@ -59,7 +59,9 @@ public class BST {
     }
 
     public Node findMinValue(Node root) {
-        /*if(root == null) {
+        /* ITERATIVE METHOD:
+
+        if(root == null) {
             System.out.println("error");
             return null;
         }
@@ -71,6 +73,8 @@ public class BST {
         }
         System.out.println("min value is: " + currentNode.value);
         return currentNode;*/
+
+        // RECURSIVE
 
         Node currentNode = root;
         if(currentNode.leftNode == null) {
@@ -100,22 +104,18 @@ public class BST {
         } else if(nodeToDelete.leftNode == null) {
             Node toChange = nodeToDelete.rightNode;
             nodeToDelete.value = toChange.value;
-            if(toChange.leftNode != null) {
-                nodeToDelete.leftNode = toChange.leftNode;
-            }
-            if(toChange.rightNode != null) {
-                nodeToDelete.rightNode = toChange.rightNode;
-            }
+            if(toChange.leftNode != null) nodeToDelete.leftNode = toChange.leftNode;
+
+            if(toChange.rightNode != null) nodeToDelete.rightNode = toChange.rightNode;
+
             nodeToDelete.rightNode = null;
         }else if(nodeToDelete.rightNode == null) {
             Node toChange = nodeToDelete.leftNode;
             nodeToDelete.value = toChange.value;
-            if(toChange.leftNode != null) {
-                nodeToDelete.leftNode = toChange.leftNode;
-            }
-            if(toChange.rightNode != null) {
-                nodeToDelete.rightNode = toChange.rightNode;
-            }
+            if(toChange.leftNode != null) nodeToDelete.leftNode = toChange.leftNode;
+
+            if(toChange.rightNode != null) nodeToDelete.rightNode = toChange.rightNode;
+
             nodeToDelete.leftNode = null;
         } else {
             Node minNodeInRight = findMinValue(nodeToDelete.rightNode);
