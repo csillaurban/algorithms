@@ -98,21 +98,23 @@ public class BST {
             Node parent = getParentOfMin(root, nodeToDelete.value);
             parent.leftNode = null;
         } else if(nodeToDelete.leftNode == null) {
-            nodeToDelete.value = nodeToDelete.rightNode.value;
-            if(nodeToDelete.rightNode.leftNode != null) {
-                nodeToDelete.leftNode = nodeToDelete.rightNode.leftNode;
+            Node toChange = nodeToDelete.rightNode;
+            nodeToDelete.value = toChange.value;
+            if(toChange.leftNode != null) {
+                nodeToDelete.leftNode = toChange.leftNode;
             }
-            if(nodeToDelete.rightNode.rightNode != null) {
-                nodeToDelete.rightNode = nodeToDelete.rightNode.rightNode;
+            if(toChange.rightNode != null) {
+                nodeToDelete.rightNode = toChange.rightNode;
             }
             nodeToDelete.rightNode = null;
         }else if(nodeToDelete.rightNode == null) {
-            nodeToDelete.value = nodeToDelete.leftNode.value;
-            if(nodeToDelete.leftNode.leftNode != null) {
-                nodeToDelete.leftNode = nodeToDelete.leftNode.leftNode;
+            Node toChange = nodeToDelete.leftNode;
+            nodeToDelete.value = toChange.value;
+            if(toChange.leftNode != null) {
+                nodeToDelete.leftNode = toChange.leftNode;
             }
-            if(nodeToDelete.leftNode.rightNode != null) {
-                nodeToDelete.rightNode = nodeToDelete.leftNode.rightNode;
+            if(toChange.rightNode != null) {
+                nodeToDelete.rightNode = toChange.rightNode;
             }
             nodeToDelete.leftNode = null;
         } else {
@@ -121,7 +123,6 @@ public class BST {
             removeNode(temp);
             nodeToDelete.value = temp;
         }
-
     }
 
     public Node getParentOfMin(Node root, int value) {
@@ -143,7 +144,6 @@ public class BST {
             int rightHeight = calculateHeight(root.rightNode);
             return max(leftHeight, rightHeight)+1;
         }
-
     }
 
     public void printNodes(Node root) {
