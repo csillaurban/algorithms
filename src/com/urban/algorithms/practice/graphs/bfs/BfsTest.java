@@ -33,5 +33,6 @@ class BfsTest {
 
     @Test
     void showShortestPathBetweenTwoVertices() {
+        assertEquals(4, bfs.showShortestPathBetweenTwoVertices(vertices.get(3), vertices.get(6)).size());
     }
 }

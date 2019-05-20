@@ -12,5 +12,6 @@ public class Main {
         Vertex end = vertices.get(8);
         bfs.calculateDistanceBetweenTwoVertices(start, end);
         bfs.selectVerticesOfVerticesInADistance(vertices.get(6), 2);
+        bfs.showShortestPathBetweenTwoVertices(vertices.get(3), vertices.get(6));
     }
 }
