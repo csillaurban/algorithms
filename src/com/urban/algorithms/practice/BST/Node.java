@@ -11,4 +11,15 @@ public class Node {
         this.leftNode = null;
         this.rightNode = null;
     }
+
+    protected void deleteLeftNode() {
+        this.leftNode = null;
+    }
+
+    protected void deleteRightNode() {
+        this.rightNode = null;
+    }
+
+
+
 }

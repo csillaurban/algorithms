@@ -109,9 +109,9 @@ public class BST {
             Node parent = getParent(root, nodeToDelete.value);
             //delete the node from parent reference, it it is the left node:
             if(parent.leftNode != null && parent.leftNode == nodeToDelete) {
-                parent.leftNode = null;
+                parent.deleteLeftNode();
             } else {
-                parent.rightNode = null;
+                parent.deleteRightNode();
             }
             //if there is no left node
         } else if(nodeToDelete.leftNode == null) {
@@ -124,7 +124,7 @@ public class BST {
 
             if(toChange.rightNode != null) nodeToDelete.rightNode = toChange.rightNode;
             //delete the rightNode
-            nodeToDelete.rightNode = null;
+            nodeToDelete.deleteRightNode();
             //if there is no right node ~ comment in the case above
         }else if(nodeToDelete.rightNode == null) {
             Node toChange = nodeToDelete.leftNode;
@@ -133,7 +133,7 @@ public class BST {
 
             if(toChange.rightNode != null) nodeToDelete.rightNode = toChange.rightNode;
 
-            nodeToDelete.leftNode = null;
+            nodeToDelete.deleteLeftNode();
             //when there are left and right nodes as well
         } else {
             //find the node with the smallest value to the right of node to delete

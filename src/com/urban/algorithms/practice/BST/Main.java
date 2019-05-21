@@ -20,7 +20,7 @@ public class Main {
         tree.root = tree.buildBST(numbers, 0, numbers.size() - 1);
         tree.addNewNode(tree.root, 92);
         tree.printNodes(tree.root);
-        tree.removeNode(282);
+        tree.removeNode(15);
         System.out.println("Nodes after removing");
         tree.printNodes(tree.root);
         int height = tree.calculateHeight(tree.root);
