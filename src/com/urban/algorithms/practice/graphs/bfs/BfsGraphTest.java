@@ -8,30 +8,30 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class BfsTest {
-    Bfs bfs;
+class BfsGraphTest {
+    BfsGraph bfsGraph;
     List<Vertex> vertices;
 
     @BeforeEach
     void setUp() {
-        bfs = new Bfs();
-        bfs.generateGraph();
-        vertices = bfs.getVertices();
+        bfsGraph = new BfsGraph();
+        bfsGraph.generateGraph();
+        vertices = bfsGraph.getVertices();
     }
 
     @Test
     void calculateDistanceBetweenTwoVertices() {
 
-        assertEquals(3, bfs.calculateDistanceBetweenTwoVertices(vertices.get(0), vertices.get(8)));
+        assertEquals(3, bfsGraph.calculateDistanceBetweenTwoVertices(vertices.get(0), vertices.get(8)));
     }
 
     @Test
     void selectVerticesOfVerticesInADistance() {
-        assertEquals(5, bfs.selectVerticesOfVerticesInADistance(vertices.get(6), 2).size());
+        assertEquals(5, bfsGraph.selectVerticesOfVerticesInADistance(vertices.get(6), 2).size());
     }
 
     @Test
     void showShortestPathBetweenTwoVertices() {
-        assertEquals(4, bfs.showShortestPathBetweenTwoVertices(vertices.get(3), vertices.get(6)).size());
+        assertEquals(4, bfsGraph.showShortestPathBetweenTwoVertices(vertices.get(3), vertices.get(6)).size());
     }
 }
