@@ -13,11 +13,7 @@ public class Dfs extends Graph {
         //create a HashMap to store visited vertices and the length of the route
         //-1: unvisited
         HashMap<Integer, Integer> visited = new HashMap<>();
-        for (Vertex vertex: getVertices()
-             ) {
-            Integer key = vertex.getValue();
-            visited.put(key, -1);
-        }
+        initVisitMap(visited);
 
         //create a stack
         Stack<Vertex> stack = new Stack<>();

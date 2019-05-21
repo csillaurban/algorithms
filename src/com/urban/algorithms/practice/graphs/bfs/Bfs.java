@@ -1,7 +1,6 @@
 package com.urban.algorithms.practice.graphs.bfs;
 
 import com.urban.algorithms.practice.graphs.Graph;
-import com.urban.algorithms.practice.graphs.GraphGenerator;
 import com.urban.algorithms.practice.graphs.Vertex;
 
 import java.util.*;
@@ -128,10 +127,5 @@ public class Bfs extends Graph {
 
 
 
-    private void initVisitMap(HashMap<Integer, Integer> visited) {
-        for (Vertex vertex: getVertices()
-        ) {
-            visited.put(vertex.getValue(), -1);
-        }
-    }
+
 }

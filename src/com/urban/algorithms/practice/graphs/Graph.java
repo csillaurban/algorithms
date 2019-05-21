@@ -1,5 +1,6 @@
 package com.urban.algorithms.practice.graphs;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,5 +14,12 @@ public class Graph {
 
     public List<Vertex> getVertices() {
         return vertices;
+    }
+
+    public void initVisitMap(HashMap<Integer, Integer> visited) {
+        for (Vertex vertex: getVertices()
+        ) {
+            visited.put(vertex.getValue(), -1);
+        }
     }
 }
