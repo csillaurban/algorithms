@@ -32,7 +32,21 @@ public class BST {
         return rootNode;
     }
 
-    public Node find(int valueToFind) {
+    public Node find(Node root, int valueToFind) {
+        Node current = root;
+        if(current.value == valueToFind) {
+            return current;
+        } else {
+            if(current.value > valueToFind) {
+                current = find(current.leftNode, valueToFind);
+            } else {
+                current = find(current.rightNode, valueToFind);
+            }
+        }
+        return current;
+
+
+        /* Iterative:
         Node currentNode = root;
 
         while(currentNode != null) {
@@ -45,6 +59,8 @@ public class BST {
             }
         }
         return null;
+
+         */
     }
 
     public Node addNewNode(Node root, int valueToAdd) {
@@ -101,7 +117,7 @@ public class BST {
 
     public void removeNode(int valueToRemove) {
         //find the element to delete
-        Node nodeToDelete = find(valueToRemove);
+        Node nodeToDelete = find(root, valueToRemove);
 
         //if there is no children -> delete the node
         if(nodeToDelete.leftNode == null && nodeToDelete.rightNode == null) {
