@@ -1,6 +1,6 @@
 package com.urban.algorithms.practice.graphs.dfs;
 
-import com.urban.algorithms.practice.graphs.bfs.Vertex;
+import com.urban.algorithms.practice.graphs.Vertex;
 
 import java.util.List;
 

@@ -1,47 +1,51 @@
 package com.urban.algorithms.practice.graphs.dfs;
 
-import com.urban.algorithms.practice.graphs.bfs.GraphGenerator;
-import com.urban.algorithms.practice.graphs.bfs.Vertex;
+import com.urban.algorithms.practice.graphs.Graph;
+import com.urban.algorithms.practice.graphs.Vertex;
 
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
-public class Dfs {
-    private List<Vertex> vertices = new LinkedList<>();
-
-    public void generateGraph() {
-        GraphGenerator graphGenerator = new GraphGenerator();
-        vertices = graphGenerator.populateGraph();
-    }
+public class Dfs extends Graph {
 
     public void iterativeDfs(Vertex start) {
+        //create a HashMap to store visited vertices and the length of the route
+        //-1: unvisited
         HashMap<Integer, Integer> visited = new HashMap<>();
-        for (Vertex vertex: vertices
+        for (Vertex vertex: getVertices()
              ) {
-            visited.put(vertex.getValue(), -1);
+            Integer key = vertex.getValue();
+            visited.put(key, -1);
         }
 
+        //create a stack
         Stack<Vertex> stack = new Stack<>();
 
+        //put the starting vertex to the stack and mark as visited
         visited.put(start.getValue(), 0);
         stack.push(start);
 
         while(!stack.isEmpty()) {
+            //get the top element and remove from the stack
             Vertex current = stack.pop();
-            System.out.println("Current in iterative: " + current.getValue());
+            System.out.println("Current vertex: " + current.getValue());
+            //get the neighbours of the current element
             List<Vertex> neighbours = current.getAdjacency();
-            for (int i = 0; i < neighbours.size(); i++) {
-                if(neighbours.get(i) != null && visited.get(neighbours.get(i).getValue()) == -1) {
-                    visited.put(neighbours.get(i).getValue(), 0);
-                    stack.push(neighbours.get(i));
+
+            //if there are neighbours
+            if(neighbours.size() > 0) {
+                for (Vertex vertex: neighbours
+                     ) {
+                    Integer key = vertex.getValue();
+                    //if a neighbour is not visited, mark as visited and push to the stack
+                    if(visited.get(key) == -1) {
+                        visited.put(key, 0);
+                        stack.push(vertex);
+                    }
                 }
             }
         }
     }
 
-    public List<Vertex> getVertices() {
-        return vertices;
-    }
 }

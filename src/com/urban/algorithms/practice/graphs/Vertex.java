@@ -1,4 +1,4 @@
-package com.urban.algorithms.practice.graphs.bfs;
+package com.urban.algorithms.practice.graphs;
 
 import java.util.LinkedList;
 import java.util.List;

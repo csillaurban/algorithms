@@ -1,15 +1,13 @@
 package com.urban.algorithms.practice.graphs.bfs;
 
+import com.urban.algorithms.practice.graphs.Graph;
+import com.urban.algorithms.practice.graphs.GraphGenerator;
+import com.urban.algorithms.practice.graphs.Vertex;
+
 import java.util.*;
 
-public class Bfs {
+public class Bfs extends Graph {
 
-    private List<Vertex> vertices = new LinkedList<>();
-
-    public void generateGraph() {
-        GraphGenerator graphGenerator = new GraphGenerator();
-        vertices = graphGenerator.populateGraph();
-    }
 
     public void bfs(Vertex startVertex) {
         HashMap<Integer, Integer> visited = new HashMap<>();
@@ -17,14 +15,14 @@ public class Bfs {
         initVisitMap(visited);
 
         queue.add(startVertex);
-        visited.put(startVertex.value, 0);
+        visited.put(startVertex.getValue(), 0);
 
         while(!queue.isEmpty()) {
             Vertex currentVertex = queue.poll();
-            List<Vertex> adj = currentVertex.adjacency;
+            List<Vertex> adj = currentVertex.getAdjacency();
             for(Vertex vertex: adj) {
-                if(visited.get(vertex.value) == -1) {
-                    visited.put(vertex.value, visited.get(currentVertex.value) + 1);
+                if(visited.get(vertex.getValue()) == -1) {
+                    visited.put(vertex.getValue(), visited.get(currentVertex.getValue()) + 1);
                     queue.add(vertex);
                 }
             }
@@ -36,18 +34,18 @@ public class Bfs {
         LinkedList<Vertex> queue = new LinkedList<>();
         initVisitMap(visited);
 
-        visited.put(start.value, 0);
+        visited.put(start.getValue(), 0);
         queue.add(start);
 
         while(!visited.isEmpty()) {
             Vertex current = queue.poll();
-            List<Vertex> adj = current.adjacency;
+            List<Vertex> adj = current.getAdjacency();
             for (Vertex vertex: adj
                  ) {
-                if(visited.get(vertex.value) == -1) {
-                    visited.put(vertex.value, visited.get(current.value) + 1);
-                    if(vertex.value == destination.value) {
-                        return visited.get(vertex.value);
+                if(visited.get(vertex.getValue()) == -1) {
+                    visited.put(vertex.getValue(), visited.get(current.getValue()) + 1);
+                    if(vertex.getValue() == destination.getValue()) {
+                        return visited.get(vertex.getValue());
                     } else {
                         queue.add(vertex);
                     }
@@ -63,17 +61,17 @@ public class Bfs {
         LinkedList<Vertex> queue = new LinkedList<>();
         initVisitMap(visited);
 
-        visited.put(start.value, 0);
+        visited.put(start.getValue(), 0);
         queue.add(start);
 
         while(!queue.isEmpty()){
             Vertex current = queue.poll();
-            List<Vertex> adj = current.adjacency;
+            List<Vertex> adj = current.getAdjacency();
             for (Vertex vertex: adj
                  ) {
-                if(visited.get(vertex.value) == -1) {
-                    visited.put(vertex.value, visited.get(current.value) + 1);
-                    if(visited.get(vertex.value) <= distance) {
+                if(visited.get(vertex.getValue()) == -1) {
+                    visited.put(vertex.getValue(), visited.get(current.getValue()) + 1);
+                    if(visited.get(vertex.getValue()) <= distance) {
                         queue.add(vertex);
                         verticesInADistance.add(vertex);
                     } else {
@@ -93,15 +91,15 @@ public class Bfs {
         initVisitMap(visited);
 
         queue.add(start);
-        visited.put(start.value, 0);
+        visited.put(start.getValue(), 0);
 
         while(!queue.isEmpty()) {
             Vertex current = queue.poll();
-            List<Vertex> adj = current.adjacency;
+            List<Vertex> adj = current.getAdjacency();
             for (Vertex vertex: adj
                  ) {
-                if(visited.get(vertex.value) == -1) {
-                    visited.put(vertex.value, visited.get(current.value) + 1);
+                if(visited.get(vertex.getValue()) == -1) {
+                    visited.put(vertex.getValue(), visited.get(current.getValue()) + 1);
                     childAndParent.put(vertex, current);
                     if(vertex == destination) {
                         break;
@@ -128,14 +126,12 @@ public class Bfs {
         return shortestPath;
     }
 
-    public List<Vertex> getVertices() {
-        return vertices;
-    }
+
 
     private void initVisitMap(HashMap<Integer, Integer> visited) {
-        for (Vertex vertex: vertices
+        for (Vertex vertex: getVertices()
         ) {
-            visited.put(vertex.value, -1);
+            visited.put(vertex.getValue(), -1);
         }
     }
 }

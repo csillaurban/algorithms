@@ -1,5 +1,7 @@
 package com.urban.algorithms.practice.graphs.bfs;
 
+import com.urban.algorithms.practice.graphs.Vertex;
+
 import java.util.List;
 
 public class Main {
