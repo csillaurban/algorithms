@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Stack;
 
-public class Dfs extends Graph {
+public class DfsGraph extends Graph {
 
     public void iterativeDfs(Vertex start) {
         //create a HashMap to store visited vertices and the length of the route

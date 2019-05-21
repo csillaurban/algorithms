@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Dfs dfs = new Dfs();
+        DfsGraph dfs = new DfsGraph();
         dfs.generateGraph();
         List<Vertex> vertices = dfs.getVertices();
         dfs.iterativeDfs(vertices.get(0));
