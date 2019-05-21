@@ -17,13 +17,17 @@ public class BST {
         if(startIndex > endIndex) {
             return null;
         }
-
+        //calculate middle position in list
         int mid = (startIndex + endIndex) / 2;
         int valueOfNode = elements.get(mid);
+        //the value of the new Node will be the value of the middle element in the list
         Node rootNode = new Node(valueOfNode);
+        //the method invoke itself and continuously cut in half the list until not reaching every element
         int newEndIndex = mid - 1;
+        //left side from the middle
         rootNode.leftNode = buildBST(elements, startIndex, newEndIndex);
         int newStartIndex = mid + 1;
+        //right side of the middle
         rootNode.rightNode = buildBST(elements, newStartIndex, endIndex);
         return rootNode;
     }
@@ -96,19 +100,32 @@ public class BST {
     }
 
     public void removeNode(int valueToRemove) {
+        //find the element to delete
         Node nodeToDelete = find(valueToRemove);
 
+        //if there is no children -> delete the node
         if(nodeToDelete.leftNode == null && nodeToDelete.rightNode == null) {
-            Node parent = getParentOfMin(root, nodeToDelete.value);
-            parent.leftNode = null;
+            //find the parent of the node
+            Node parent = getParent(root, nodeToDelete.value);
+            //delete the node from parent reference, it it is the left node:
+            if(parent.leftNode != null && parent.leftNode == nodeToDelete) {
+                parent.leftNode = null;
+            } else {
+                parent.rightNode = null;
+            }
+            //if there is no left node
         } else if(nodeToDelete.leftNode == null) {
+            //get the right node, because it will replace the deleted node
             Node toChange = nodeToDelete.rightNode;
+            //change the value of the node to delete
             nodeToDelete.value = toChange.value;
+            //set the leftNode and rightNode to the deleted node, if any
             if(toChange.leftNode != null) nodeToDelete.leftNode = toChange.leftNode;
 
             if(toChange.rightNode != null) nodeToDelete.rightNode = toChange.rightNode;
-
+            //delete the rightNode
             nodeToDelete.rightNode = null;
+            //if there is no right node ~ comment in the case above
         }else if(nodeToDelete.rightNode == null) {
             Node toChange = nodeToDelete.leftNode;
             nodeToDelete.value = toChange.value;
@@ -117,23 +134,32 @@ public class BST {
             if(toChange.rightNode != null) nodeToDelete.rightNode = toChange.rightNode;
 
             nodeToDelete.leftNode = null;
+            //when there are left and right nodes as well
         } else {
+            //find the node with the smallest value to the right of node to delete
             Node minNodeInRight = findMinValue(nodeToDelete.rightNode);
+            //save the value of node to delete to smallest value
             int temp = minNodeInRight.value;
+            //the method invoke itself to remove the selected node with the smallest value
             removeNode(temp);
+            //change the value of node to delete to smallest value
+            //the left and right node remain the same
             nodeToDelete.value = temp;
         }
     }
 
-    public Node getParentOfMin(Node root, int value) {
-        Node currentNode = root.rightNode;
-        while(currentNode.leftNode != null) {
-            if(currentNode.leftNode.value == value) {
-                return currentNode;
+    public Node getParent(Node root, int value) {
+        Node current = root;
+        if((current.leftNode != null && current.leftNode.value == value) | (current.rightNode != null && current.rightNode.value == value)) {
+            return current;
+        } else {
+            if(current.value > value) {
+                current = getParent(current.leftNode, value);
+            } else {
+                current = getParent(current.rightNode, value);
             }
-            currentNode = currentNode.leftNode;
         }
-        return null;
+        return current;
     }
 
     public int calculateHeight(Node root) {
