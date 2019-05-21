@@ -32,51 +32,14 @@ public class Dfs {
             Vertex current = stack.pop();
             System.out.println("Current in iterative: " + current.getValue());
             List<Vertex> neighbours = current.getAdjacency();
-            for (Vertex vertex: neighbours
-                 ) {
-                if(visited.get(vertex.getValue()) == -1) {
-                    visited.put(vertex.getValue(), visited.get(current.getValue()) + 1);
-                    stack.push(vertex);
+            for (int i = 0; i < neighbours.size(); i++) {
+                if(neighbours.get(i) != null && visited.get(neighbours.get(i).getValue()) == -1) {
+                    visited.put(neighbours.get(i).getValue(), 0);
+                    stack.push(neighbours.get(i));
                 }
             }
-
         }
-
     }
-
-    /*public void recursiveDfs(Vertex start) {
-        HashMap<Integer, Integer> visited = new HashMap<>();
-        for (Vertex vertex: vertices
-        ) {
-            visited.put(vertex.getValue(), -1);
-        }
-
-        Stack<Vertex> stack = new Stack<>();
-
-        visited.put(start.getValue(), 0);
-        stack.push(start);
-
-        List<Vertex> adj = start.getAdjacency();
-
-        while(!stack.isEmpty()) {
-
-            if(adj.size() > 0) {
-
-                for (Vertex vertex : adj
-                ) {
-                    if (visited.get(vertex.getValue()) == -1) {
-                        System.out.println("Vertex: " + vertex.getValue());
-                        visited.put(vertex.getValue(), visited.get(start.getValue()) + 1);
-                        recursiveDfs(vertex);
-                    }
-                }
-
-            } else {
-                stack.pop();
-            }
-
-        }
-    }*/
 
     public List<Vertex> getVertices() {
         return vertices;
