@@ -1,6 +1,7 @@
 package com.urban.algorithms.practice.sorting.bubble_sort;
 
 public class Bubble {
+    //in the case of bubble sort, the end of the array will be sorted
 
     public void sort(int[] array) {
         int n = array.length;

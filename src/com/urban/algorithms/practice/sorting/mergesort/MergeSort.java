@@ -5,6 +5,7 @@ public class MergeSort {
 
     public void mergeSort(int[] array, int low, int high) {
         if(low < high) {
+            //divide array and merge the parts
             int middle = (low + high) / 2;
             mergeSort(array, low, middle);
             mergeSort(array, middle + 1, high);
@@ -15,6 +16,7 @@ public class MergeSort {
     public void merge(int[] array, int low, int middle, int high) {
         int length1 = middle - low + 1;
         int length2 = high - middle;
+        //create two temporary arrays from array
         int[] temp1 = new int[length1];
         int[] temp2 = new int[length2];
 
@@ -27,6 +29,7 @@ public class MergeSort {
 
         int l = 0, m = 0, k = low;
 
+        //while there are elements in both arrays, compare the elements and place them in the array
         while(l < length1 && m < length2) {
             if(temp1[l] <= temp2[m]) {
                 array[k] = temp1[l];
@@ -38,6 +41,7 @@ public class MergeSort {
             k++;
         }
 
+        //place the remaining elements
         while(l < length1) {
             array[k] = temp1[l];
             l++;
