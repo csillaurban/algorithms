@@ -53,6 +53,7 @@ public class MergeSort {
     }
 
     public void printArray(int[] array) {
+        System.out.println("Mergesort");
         for (int i = 0; i < array.length; i++) {
             System.out.println(array[i]);
         }
