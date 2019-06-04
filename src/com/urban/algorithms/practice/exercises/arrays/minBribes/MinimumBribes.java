@@ -1,4 +1,4 @@
-package com.urban.algorithms.practice.exercises.arrays;
+package com.urban.algorithms.practice.exercises.arrays.minBribes;
 
 
 

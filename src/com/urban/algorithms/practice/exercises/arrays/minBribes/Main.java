@@ -1,6 +1,4 @@
-package com.urban.algorithms.practice.exercises.arrays;
-
-import java.util.Arrays;
+package com.urban.algorithms.practice.exercises.arrays.minBribes;
 
 public class Main {
     public static void main(String[] args) {
