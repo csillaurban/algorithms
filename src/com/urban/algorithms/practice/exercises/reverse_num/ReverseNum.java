@@ -14,6 +14,7 @@ public class ReverseNum {
 
             reversed = reversed * 10 + digit;
             if((reversed - digit) / 10 != prevNum) {
+                System.out.println("overflow");
                 return 0;
             }
             prevNum = reversed;
@@ -21,7 +22,7 @@ public class ReverseNum {
 
 
         }
-
+        System.out.println("The reversed number: " + reversed);
         return reversed;
 
     }
